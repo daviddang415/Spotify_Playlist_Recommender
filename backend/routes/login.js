@@ -11,32 +11,7 @@ const encodeFormData = (data) => {
       .join('&');
   }
 
-router.get('/test', async (req, res) => {
-  const scope =
-  `user-modify-playback-state
-  user-read-playback-state
-  user-read-currently-playing
-  user-library-modify
-  user-library-read
-  user-top-read
-  playlist-read-private
-  playlist-modify-public`;
-
-  const temp = 'https://accounts.spotify.com/authorize?' +
-  querystring.stringify({
-    response_type: 'code',
-    client_id: process.env.CLIENT_ID,
-    scope: scope,
-    redirect_uri: process.env.REDIRECTURI
-  })
-
-  res.json({
-    endpoint: "http://localhost:4000/login"
-  });
-})
-
 router.get('/login', async (req, res) => {
-    console.log("hi");
     const scope =
     `user-modify-playback-state
     user-read-playback-state
@@ -59,7 +34,6 @@ router.get('/login', async (req, res) => {
 });
 
 router.get('/callback', async (req, res) => {
-    console.log("easy peasy lemon squeezy")
     const body = {
         grant_type: 'authorization_code',
         code: req.query.code,
