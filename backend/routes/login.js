@@ -11,6 +11,12 @@ const encodeFormData = (data) => {
       .join('&');
   }
 
+  router.get('/start', async (req, res) => {
+    res.json({
+      endpoint: "http://localhost:4000/login"
+    });
+})
+
 router.get('/login', async (req, res) => {
     const scope =
     `user-modify-playback-state
