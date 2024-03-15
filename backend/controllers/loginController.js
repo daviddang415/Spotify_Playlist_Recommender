@@ -24,6 +24,7 @@ const login = async (req, res) => {
     user-library-read
     user-top-read
     playlist-read-private
+    playlist-read-collaborative
     playlist-modify-public`;
 
   // console.log('about to redirect to callback function')
