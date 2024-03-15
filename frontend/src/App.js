@@ -6,6 +6,7 @@ function App() {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("")
   const [artists, setArtists] = useState([])
+  const [userName, setUserName] = useState("")
   
     useEffect(() => {
       const fetchData = async () => {
@@ -13,6 +14,19 @@ function App() {
         .then(response => response.json())
         .then(json => setData(json))
         .catch(error => console.error(error))
+      }
+
+      const fetchUserName = async () => {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        })
+    
+        const userData = await response.json()
+        setUserName(userData.display_name)
       }
       
       if (data) {
@@ -25,9 +39,13 @@ function App() {
         }
   
         setToken(access_token)
-        console.log(access_token)
+        //console.log(access_token)
       } else {
         fetchData()
+      }
+
+      if (token) {
+        fetchUserName()
       }
     }, [data])
   
@@ -69,6 +87,8 @@ function App() {
         <button>Login to Spotify</button>
       </a> : <button onClick={logOut}>Logout</button>
       }
+
+      {userName ? <div>{`Hello ${userName}`}</div> : <div></div>}
 
       {token ? <form onSubmit={searchArtists}>
         <input type="text" onChange={e => setSearchKey(e.target.value)}/>
