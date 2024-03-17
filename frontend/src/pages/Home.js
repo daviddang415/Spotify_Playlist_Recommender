@@ -16,8 +16,6 @@ Home Page
 const Home = () => {
   const [data, setData] = useState("");
   const [token, setToken] = useState("");
-  //const [searchKey, setSearchKey] = useState("")
-  //const [artists, setArtists] = useState([])
   const [playlists, setPlaylists] = useState([])
   const [userName, setUserName] = useState("")
   const [userID, setUserID] = useState("")
@@ -125,17 +123,22 @@ const Home = () => {
       </a> : <button onClick={logOut}>Logout</button>
       }
 
-      {token ?
-      <div className="Playlist-Container">
-        <h3>Your Playlists</h3>
-        <div className="playlists">
+      {token &&
+      <div className="container" style={{"marginBottom":"15px"}}>
+        <h3 style={{"textAlign": "left", "paddingLeft": "12px", "marginBottom": "15px"}}>Your Playlists</h3>
+        {/*<div className='temp' style={{height: "400px", "overflowY": "auto", "overflowX": "hidden"}}>
+          <div className="row row-cols-auto gy-2">
                 {playlists && playlists.map((playlist) => (
-                    <PlaylistDetails key={playlist.id} playlist={playlist}/>
+                      <div className="col"> <PlaylistDetails key={playlist.id} playlist={playlist}/> </div>
                 ))}
-        </div>
-      </div> 
-      : 
-      <div></div>}
+          </div>
+        </div>*/}
+            <div className="row row-cols-auto gy-2">
+              {playlists && playlists.map((playlist) => (
+                  <div className="col"> <PlaylistDetails key={playlist.id} playlist={playlist}/> </div>
+              ))}
+          </div>
+      </div>}
     </div>
   );
 }
