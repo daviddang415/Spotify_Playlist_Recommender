@@ -1,9 +1,25 @@
 import "./PlaylistDetails.css"
+import { useState } from "react";
+import SongDetails from "./SongDetails";
 
-const PlaylistDetails = ({ playlist }) => {
+const PlaylistDetails = ({ token, playlist }) => {
+    const [songs, setSongs] = useState([])
+
+    const getPlaylistTracks = async (token, playlistID) => {
+        const response = await fetch(`/userData/tracks/${token}/${playlistID}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+        
+        const json = await response.json()
+        return setSongs(json.songs)
+    }
+
     return (
         <div className="container">
-            <div className="card border border-secondary" onClick={() => {console.log(playlist.id)}}style={{width: '200px', cursor: 'pointer'}}
+            <div className="card border border-secondary" onClick={() => {getPlaylistTracks(token, playlist.id)}} style={{width: '200px', cursor: 'pointer'}}
             data-bs-toggle="modal" data-bs-target={`#details${playlist.id}`} id={`#details${playlist.id}`}>
                 {playlist.images.length ? <img className="card-img border-bottom border-black rounded-bottom-0" src={playlist.images[0].url} alt=""/> : <div>No image</div>}
                 <div className="card-title">{playlist.name}</div>
@@ -17,8 +33,15 @@ const PlaylistDetails = ({ playlist }) => {
                             <h3 style={{"marginLeft": "15px"}}>{playlist.name}</h3>
                             <button className="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <div className="modal-body">
-                            Song #1
+                        <div className="modal-body" style={{"padding": "0px"}}>
+                            {/*Song logic*/}
+                            <ul className="list-group list-group-flush">
+                                {songs && songs.map((song) => (
+                                    <li className="list-group-item d-flex justify-content-between border-top border-bottom" style={{padding: "15px"}}>
+                                        <SongDetails song={song}></SongDetails>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                         <div className="modal-footer">
                         <button className="btn btn-primary">Generate Playlist</button>

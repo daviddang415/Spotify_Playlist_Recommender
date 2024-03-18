@@ -135,7 +135,7 @@ const Home = () => {
         </div>*/}
             <div className="row row-cols-auto gy-2">
               {playlists && playlists.map((playlist) => (
-                  <div className="col"> <PlaylistDetails key={playlist.id} playlist={playlist}/> </div>
+                  <div className="col"> <PlaylistDetails key={playlist.id} token = {token} playlist={playlist}/> </div>
               ))}
           </div>
       </div>}
