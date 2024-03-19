@@ -1,25 +1,29 @@
 import "./PlaylistDetails.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SongDetails from "./SongDetails";
 
-const PlaylistDetails = ({ token, playlist }) => {
+const PlaylistDetails = ({ token, playlist, currentSong, setCurrentSong }) => {
     const [songs, setSongs] = useState([])
 
-    const getPlaylistTracks = async (token, playlistID) => {
-        const response = await fetch(`/userData/tracks/${token}/${playlistID}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
+    useEffect(() => {
+        const getPlaylistTracks = async (token, playlistID) => {
+            const response = await fetch(`/userData/tracks/${token}/${playlistID}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+            
+            const json = await response.json()
+            setSongs(json.songs)
+        }
         
-        const json = await response.json()
-        return setSongs(json.songs)
-    }
+        getPlaylistTracks(token, playlist.id)
+    }, [token, playlist.id])
 
     return (
         <div className="container">
-            <div className="card border border-secondary" onClick={() => {getPlaylistTracks(token, playlist.id)}} style={{width: '200px', cursor: 'pointer'}}
+            <div className="card border border-secondary" style={{width: '200px', cursor: 'pointer'}}
             data-bs-toggle="modal" data-bs-target={`#details${playlist.id}`} id={`#details${playlist.id}`}>
                 {playlist.images.length ? <img className="card-img border-bottom border-black rounded-bottom-0" src={playlist.images[0].url} alt=""/> : <div>No image</div>}
                 <div className="card-title">{playlist.name}</div>
@@ -38,7 +42,7 @@ const PlaylistDetails = ({ token, playlist }) => {
                             <ul className="list-group list-group-flush">
                                 {songs && songs.map((song) => (
                                     <li className="list-group-item d-flex justify-content-between border-top border-bottom" style={{padding: "15px"}}>
-                                        <SongDetails song={song}></SongDetails>
+                                        <SongDetails song={song} currentSong={currentSong} setCurrentSong={setCurrentSong}></SongDetails>
                                     </li>
                                 ))}
                             </ul>

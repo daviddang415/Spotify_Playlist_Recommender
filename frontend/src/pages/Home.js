@@ -11,6 +11,10 @@ Home Page
     - Clicking playlist expands playlist to show songs
 - Button that allows to generate playlist
     - Should allow user to have playlist added to their account
+-Generating Playlist
+  - Uses machine learning to generate playlist
+  - displays playlist and provides option to user if they want to add it to their spotify account3
+  - stores generated playlist in mysql database
 */
 
 const Home = () => {
@@ -19,6 +23,7 @@ const Home = () => {
   const [playlists, setPlaylists] = useState([])
   const [userName, setUserName] = useState("")
   const [userID, setUserID] = useState("")
+  const [currentSong, setCurrentSong] = useState("")
   
     useEffect(() => {
       const fetchData = async () => {
@@ -135,7 +140,7 @@ const Home = () => {
         </div>*/}
             <div className="row row-cols-auto gy-2">
               {playlists && playlists.map((playlist) => (
-                  <div className="col"> <PlaylistDetails key={playlist.id} token = {token} playlist={playlist}/> </div>
+                  <div className="col"> <PlaylistDetails key={playlist.id} token={token} playlist={playlist} currentSong={currentSong} setCurrentSong={setCurrentSong}/> </div>
               ))}
           </div>
       </div>}
