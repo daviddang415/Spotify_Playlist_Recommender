@@ -15,6 +15,12 @@ app.use('/', loginRoutes);
 const userDataRoutes = require('./routes/userData');
 app.use('/userData', userDataRoutes);
 
+const recommendPlaylistRoutes = require('./routes/recommendPlaylist');
+app.use('/recommendPlaylist', recommendPlaylistRoutes);
+
+const databaseRoutes = require('./routes/database');
+app.use('/database', databaseRoutes);
+
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

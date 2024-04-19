@@ -1,3 +1,35 @@
 .card:hover {
     box-shadow: 0 0 11px rgba(33,33,33,.2); 
 }
+
+.card-title {
+    padding: 0.25rem;
+    color: var(--bs-card-title-color);
+    margin-bottom: 2px !important;
+}
+
+.btn-info{
+    --bs-btn-color: #fff !important;
+    --bs-btn-hover-color: #fff !important;
+    --bs-btn-active-color: #fff !important;
+    --bs-btn-disabled-color: #fff !important;
+    --bs-btn-hover-bg: #0dcaf0 !important;
+    --bs-btn-hover-border-color: #0dcaf0 !important;
+    --bs-btn-active-bg: #0dcaf0 !important;
+    --bs-btn-active-border-color: #0dcaf0 !important;
+    cursor: default !important;
+}
+
+.btn-success{
+    --bs-btn-hover-bg: #198754 !important;
+    --bs-btn-hover-border-color: #198754 !important;
+    --bs-btn-active-bg: #198754 !important;
+    --bs-btn-active-border-color: #198754 !important;
+    cursor: default !important;
+}
+
+.loadingText {
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

@@ -1,12 +1,13 @@
-const Player = ({ songName, isPlaying, setIsPlaying, currentSong, setCurrentSong}) => {
+const Player = ({ songName, isPlaying, setIsPlaying, currentSong, setCurrentSong, playlistName, currentPlaylistName, setCurrentPlaylistName}) => {
     
     const playPause = () => {
-        if (currentSong === songName) {
+        if (currentSong === songName && playlistName === currentPlaylistName) {
             setIsPlaying(!isPlaying)
         } else {
+            setCurrentPlaylistName(playlistName)
             setIsPlaying(true)
             setCurrentSong(songName)
-        }
+       }
     }
 
     return (
