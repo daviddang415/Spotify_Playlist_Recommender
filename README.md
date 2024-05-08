@@ -1,6 +1,6 @@
 # Spotify Playlist Recommender
 
-Spotify Playlist Recommender is a web application that suggests new songs for Spotify users according to their playlists. The web app prompts the user to login to the site using their Spotify account and will then display their public playlists as rows of cards. Each card can be clicked on and will display the playlist's songs. Additionally, a card will have a button that will create playlist with songs that similar to the playlists chosen. The web app uses machine learning, specically cosine similarity, to recommend songs based on a given song's audio features and genre (found through the Spotify API). Once clicked on, the web app creates a newly recommended playlist that is stored in a database and displays this playlist as another card. This card allows the user to add the corresponding recommended playlist to their Spotify account.
+Spotify Playlist Recommender is a web application that suggests new songs for Spotify users according to their playlists. The web app prompts the user to log in to the site using their Spotify account and will then display their public playlists as rows of cards. Each card can be clicked on and will display the playlist's songs. Additionally, a card will have a button that will create a playlist with songs that are similar to songs from the chosen playlist. The web app uses machine learning, specifically cosine similarity, to recommend new songs based on a given song's audio features and genre (obtained through the Spotify API). One a newly recommended playlist is generated, the web app stores it in a database and displays this playlist as another card. This card allows the user to add the corresponding recommended playlist to their Spotify account.
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ npm start
 * [Scikit-learn](https://scikit-learn.org/0.21/documentation.html) - Machine Learning Python Library 
 * [Node](https://nodejs.org/en) - Server environment
 * [Express](https://expressjs.com/) - Node web framework
-* [MySQL](https://maven.apache.org/) - Relatonal database
+* [MySQL](https://maven.apache.org/) - Relational database
 
 ### Frontend
 * [React](https://react.dev/) - Frontend Javascript library
