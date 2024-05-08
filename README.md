@@ -38,7 +38,7 @@ npm start
 
 ### Backend
 * [Spotify API](https://developer.spotify.com/documentation/web-api) - Access user's public playlists and song data
-* [Scikit-learn](https://scikit-learn.org/0.21/documentation.html) - Machine Learning Python Library 
+* [Scikit-learn](https://scikit-learn.org/0.21/documentation.html) - Machine learning Python library 
 * [Node](https://nodejs.org/en) - Server environment
 * [Express](https://expressjs.com/) - Node web framework
 * [MySQL](https://maven.apache.org/) - Relational database
