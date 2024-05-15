@@ -45,3 +45,4 @@ npm start
 
 ### Frontend
 * [React](https://react.dev/) - Frontend Javascript library
+* [Bootstrap](https://getbootstrap.com/) - CSS library
